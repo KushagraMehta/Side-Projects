@@ -1,0 +1,32 @@
+.nav {
+  display: flex;
+  position: fixed;
+  top: 1.2rem;
+  left: 20rem;
+  right: 10rem;
+  justify-content: space-between;
+  border-bottom: solid 1rem black;
+  li {
+    display: inline;
+    padding: 1rem;
+    font-size: 2rem;
+    text-transform: uppercase;
+
+    a {
+      text-decoration: none;
+      color: black;
+
+      &:hover {
+        color: $primary-color;
+      }
+    }
+  }
+
+  div {
+    svg {
+      width: 2.5rem;
+      height: auto;
+      margin: 1rem;
+    }
+  }
+}

@@ -1,0 +1,26 @@
+@import "config";
+@import "responsive";
+@import "../../Components/home/navigation/navigation";
+@import "../../Components/home/slideshow/slideshow";
+
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit;
+}
+
+html,
+body {
+  font-weight: 400;
+  font-size: 62.5%;
+  line-height: 1.7;
+  padding: 3rem;
+  box-sizing: border-box;
+  font-family: "Hind", -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto",
+    "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
