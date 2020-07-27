@@ -2,29 +2,44 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import * as BooksAPI from "../BooksAPI";
 import Book from "./Book";
-import PropTypes from "prop-types";
 
-class SearchBooks extends Component {
-  state = {
+type SearchBooksState = {
+  input: string;
+  books: Array<{
+    id: number;
+    shelf: string;
+    imageLinks: { smallThumbnail: string };
+    title: string;
+    authors: string;
+  }>;
+};
+interface SearchBooksProps {
+  currentShelfBooks: SearchBooksState["books"];
+  addBooktoShelf: Function;
+}
+class SearchBooks extends React.Component<SearchBooksProps, SearchBooksState> {
+  state: SearchBooksState = {
     input: "",
     books: [],
   };
-  _inputChangeHandler = (event) => {
+  _inputChangeHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
     this.setState({ input: event.target.value }, () => {
       if (this.state.input.length) {
-        BooksAPI.search(this.state.input).then((books) => {
-          if (Array.isArray(books)) {
-            books.forEach((book) => {
-              const sameBookAsOnShelf = this.props.currentShelfBooks.filter(
-                (curentbook) => book.id === curentbook.id
-              );
-              if (sameBookAsOnShelf.length)
-                book.shelf = sameBookAsOnShelf[0].shelf;
-              else book.shelf = "none";
-            });
-            this.setState({ books: books });
-          } else this.setState({ books: [] });
-        });
+        BooksAPI.search(this.state.input).then(
+          (books: SearchBooksState["books"]) => {
+            if (Array.isArray(books)) {
+              books.forEach((book) => {
+                const sameBookAsOnShelf = this.props.currentShelfBooks.filter(
+                  (curentbook) => book.id === curentbook.id
+                );
+                if (sameBookAsOnShelf.length)
+                  book.shelf = sameBookAsOnShelf[0].shelf;
+                else book.shelf = "none";
+              });
+              this.setState({ books: books });
+            } else this.setState({ books: [] });
+          }
+        );
       } else this.setState({ books: [] });
     });
   };
@@ -53,7 +68,7 @@ class SearchBooks extends Component {
                   bookTitle={book.title}
                   bookAuthor={book.authors}
                   currentShelf={book.shelf}
-                  changeShelf={(event) =>
+                  changeShelf={(event: React.ChangeEvent<HTMLInputElement>) =>
                     this.props.addBooktoShelf(event.target.value, book)
                   }
                 />
@@ -65,8 +80,4 @@ class SearchBooks extends Component {
     );
   }
 }
-SearchBooks.prototype = {
-  currentShelf: PropTypes.array,
-  addBooktoShelf: PropTypes.func,
-};
 export default SearchBooks;

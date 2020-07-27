@@ -1,9 +1,15 @@
-import React from "react";
+import React, { FunctionComponent } from "react";
 import PropTypes from "prop-types";
 
-const Book = (props) => {
+const Book: FunctionComponent<{
+  bookTitle: string;
+  bookAuthor: string;
+  changeShelf: Function;
+  currentShelf: string;
+  bookImg: { smallThumbnail: string };
+}> = (props) => {
   const { bookTitle, bookAuthor, changeShelf, currentShelf } = props;
-  let imgURL = undefined;
+  let imgURL: string | undefined = undefined;
   if (props.bookImg) imgURL = props.bookImg.smallThumbnail;
   const style = {
     width: 128,

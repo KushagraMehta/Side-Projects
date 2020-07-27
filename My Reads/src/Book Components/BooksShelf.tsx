@@ -2,7 +2,18 @@ import React from "react";
 import Book from "./Book";
 import PropTypes from "prop-types";
 
-const BooksShelf = (props) => {
+const BooksShelf: React.FC<{
+  shelfName: string;
+  books: Array<{
+    id: number;
+    shelf: string;
+    imageLinks: { smallThumbnail: string };
+    title: string;
+    authors: string;
+  }>;
+  shelfChangeHandler: Function;
+  shelfValue: string;
+}> = (props) => {
   const { shelfName, books, shelfChangeHandler, shelfValue } = props;
   return (
     <div className="bookshelf">
@@ -16,7 +27,7 @@ const BooksShelf = (props) => {
                 bookTitle={book.title}
                 bookAuthor={book.authors}
                 currentShelf={shelfValue}
-                changeShelf={(event) =>
+                changeShelf={(event: React.ChangeEvent<HTMLInputElement>) =>
                   shelfChangeHandler(event.target.value, book)
                 }
               />
