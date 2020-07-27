@@ -1,7 +1,7 @@
 import React, { FunctionComponent } from "react";
 
 type SquareProps = {
-  value: Number;
+  value: string | null;
   onClick: Function;
 };
 const Square: FunctionComponent<SquareProps> = ({ value, onClick }) => {

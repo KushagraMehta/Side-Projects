@@ -1,7 +1,7 @@
-import React, { useState } from "react";
+import React, { useState, FunctionComponent } from "react";
 import Board from "./Board";
 
-function calculateWinner(squares: Array<Number>) {
+function calculateWinner(squares: Array<string | null>) {
   const lines = [
     [0, 1, 2],
     [3, 4, 5],
@@ -20,8 +20,10 @@ function calculateWinner(squares: Array<Number>) {
   }
   return null;
 }
-const Game = () => {
-  const [history, setHistory] = useState([Array(9).fill(null)]);
+const Game: FunctionComponent = () => {
+  const [history, setHistory] = useState<Array<Array<string | null>>>([
+    Array(9).fill(null),
+  ]);
   const [stepNumber, setStepNumber] = useState(0);
   const [xIsNext, setXisNext] = useState(true);
   const winner = calculateWinner(history[stepNumber]);

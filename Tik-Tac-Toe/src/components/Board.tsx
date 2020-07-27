@@ -2,7 +2,7 @@ import React, { FunctionComponent } from "react";
 import Square from "./Square";
 
 type BoardProps = {
-  squares: Array<Number>;
+  squares: Array<string | null>;
   onClick: Function;
 };
 
