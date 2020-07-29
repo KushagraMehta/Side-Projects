@@ -1,0 +1,72 @@
+.container {
+  width: 100%;
+  max-width: 120rem;
+  margin: auto;
+  padding: 0 1.5rem;
+  .gallary {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: auto;
+    grid-gap: 1.5rem;
+    grid-template-areas:
+      "sale women men shoes"
+      "new women accessories accessories";
+
+    &--image {
+      position: relative;
+      &:hover img {
+        opacity: 0.3;
+      }
+      &:hover .caption {
+        opacity: 1;
+      }
+      & img {
+        opacity: 1;
+        width: 100%;
+        height: 25rem;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        border: solid 1px;
+        transition: 0.5s ease;
+        backface-visibility: hidden;
+      }
+      & .caption {
+        transition: 0.5s ease;
+        opacity: 0;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        -ms-transform: translate(-50%, -50%);
+        text-align: center;
+      }
+      & .text {
+        border-radius: 1rem;
+        background-color: #2879fe;
+        color: white;
+        font-size: 16px;
+        padding: 16px 32px;
+      }
+    }
+    .sale {
+      grid-area: sale;
+    }
+    .man {
+      grid-area: man;
+    }
+    .women {
+      grid-area: women;
+      min-height: 51.5rem;
+    }
+    .new {
+      grid-area: new;
+    }
+    .shoes {
+      grid-area: shoes;
+    }
+    .accessories {
+      grid-area: accessories;
+    }
+  }
+}
